@@ -11,24 +11,15 @@ import com.example.demo.repository.Repo;
 import java.util.List;
 import java.util.ArrayList;    
 import org.springframework.beans.factory.annotation.Autowired;    
-@RestController
+@Controller
 public class IndexController {
-@Autowired    
-Repo repository;
-    @Value("${spring.application.name}")
-	     String appName;
-	 
-	    @GetMapping("/")
-	    public String homePage(Model model) {
-	        model.addAttribute("appName", appName);
-	        repository.save(new Customer("Jack", "Bauer"));
-	     return "home";   
-	    }
-	      @GetMapping("/see")
-	      public List<Customer> getAllNotes() {
-	  		List<Customer>userRecords = new ArrayList<>();    
-			repository.findAll().forEach(userRecords::add);    
-			return userRecords;    
+@Value("${spring.application.name}")
+ String appName;
 
-	    }
+@GetMapping("/")
+public String homePage(Model model) {
+    model.addAttribute("appName", appName);
+ return "home";   
+}
+
 }                                                                                                           
